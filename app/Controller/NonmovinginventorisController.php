@@ -2,7 +2,7 @@
 App::uses('AppController', 'Controller');
 App::uses('Folder', 'Utility');
 App::uses('File', 'Utility');
-class nonmovinginventorisController extends AppController
+class NonmovinginventorisController extends AppController
 {
 	 var $helpers = array('Html', 'Form');
 	 public $components = array(
