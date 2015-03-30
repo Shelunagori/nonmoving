@@ -76,7 +76,7 @@ var EcommerceProducts = function () {
         //main function to initiate the module
         init: function () {
 
-            handleProducts();
+           // handleProducts();
             initPickers();
             
         }

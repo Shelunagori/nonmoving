@@ -113,25 +113,25 @@ foreach($classified_posts_arr as $ftc_classified_post)
 													<div class="panel-body">
 														
                                                       <!-- BEGIN FORM-->
-                                                    <form id="regform">
+                                                    <form id="regform" name="regform">
                                                         <h2>Write a Enquiry</h2>
                                                         <div class="form-group">
                                                           <label for="name">Name <span class="require">*</span></label>
-                                                          <input class="form-control" id="name" type="text">
+                                                          <input class="form-control" id="name" name="name" type="text">
                                                         </div>
                                                         <div class="form-group">
                                                           <label for="email">Email</label>
-                                                          <input class="form-control" id="email" type="text">
+                                                          <input class="form-control" id="email" name="email" type="text">
                                                         </div>
                                                          <div class="form-group">
                                                           <label for="phone">Phone No. <span class="require">*</span></label>
-                                                          <input class="form-control" id="phone" type="text">
+                                                          <input class="form-control" id="phone" type="text" name="phone_no">
                                                         </div>
                                                         <div class="form-group">
                                                           <label for="message">Message</label>
-                                                          <textarea class="form-control" rows="5" id="message"></textarea>
+                                                          <textarea class="form-control" rows="5" id="message" name="message"></textarea>
                                                         </div>
-                                                       
+                                                       <input type="hidden" value="<?php echo $email_id; ?>" id="email_to" />
                                                         <div class="padding-top-20">                  
                                                         <!--  <button type="submit" class="btn btn-primary">Send</button>-->
                                                           <a class="btn btn-primary" id="notific8_show" >

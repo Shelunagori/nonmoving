@@ -26,12 +26,9 @@ var UINotific8 = function () {
                         $.notific8('zindex', 11500);
                         $.notific8($.trim($('#notific8_text').val()), settings);
                         
-                      /*  $button.attr('disabled', 'disabled');
+                    
                         
-                        setTimeout(function() {
-                            $button.removeAttr('disabled');
-                        }, 1000);*/
-					}, 2000);
+					}, 8000);
                     });
 
         }

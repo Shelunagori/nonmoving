@@ -2,7 +2,7 @@
 App::uses('AppController', 'Controller');
 App::uses('Folder', 'Utility');
 App::uses('File', 'Utility');
-class NonmovinginventorisController extends AppController
+class nonmovinginventorisController extends AppController
 {
 	 var $helpers = array('Html', 'Form');
 	 public $components = array(
@@ -29,11 +29,18 @@ class NonmovinginventorisController extends AppController
 	{
 		$this->layout='ajax_layout';
 		$name=$this->request->query('name');
-		$email=$this->request->query('email');
+		$email_reply=$this->request->query('email');
+		$email_to=$this->request->query('email_to');
 		$phone_no=$this->request->query('phone');
 		$message=$this->request->query('message');
+		$message_web='Name '.$name.'<br/>Email '.$email_reply.'<br/>Phone No. '.$phone_no.'<br/>Message '.$message;
 		$this->loadmodel('Enquiry');
-		$this->Enquiry->saveAll(array('name'=>$name,'email'=>$email,'phone_no'=>$phone_no,'message'=>$message));	
+		$this->Enquiry->saveAll(array('name'=>$name,'email'=>$email_reply,'phone_no'=>$phone_no,'message'=>$message));
+		$success=$this->smtpmailer($email_to,'Nonmoving Inventory','Enquiry',$message_web,$email_reply);
+		
+        
+
+		
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public function ajax_php_file() 
@@ -405,7 +412,7 @@ public function ecommerce_products()
 			}
 			else
 			{
-				$conditions =array ('Classified_post.status ' => "1",
+				$conditions =array ('Classified_post.status' => "1",
                             'OR' => array(
 								array('Classified_post.short_description LIKE' => "%$search_by_meta%"),
             					array('Classified_post.description LIKE' => "%$search_by_meta%"),
@@ -556,8 +563,8 @@ public function ecommerce_products()
 			
 		}
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-	 function categories_details() 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public function categories_details() 
 	{
 		$this->layout='index_layout';
 
@@ -566,7 +573,7 @@ public function ecommerce_products()
 		$categories_id=$this->request->query('categories_id');
 		$search_by_meta=$this->request->query('search_by_meta');		
 		$sub_categories_id=$this->request->query('sub_categories_id');		
-		
+	
 		
 		if(!empty($search_by_meta ))
 		{
@@ -591,7 +598,6 @@ public function ecommerce_products()
 		}
 		else if(!empty($categories_id))
 		{
-			
 				$categories_id=$this->request->query('categories_id');
 				$order_by='id DESC';
 		
@@ -607,21 +613,19 @@ public function ecommerce_products()
 				{
 					$sub_categories_ftc=$res_values['Sub_categorie']['id'];	
 				}
-				
 				$this->loadmodel('Classified_post');
 				if(!empty($sub_categories_ftc) && !empty($sub_categories_id))
 				{
 					
 					@$rst_classified_posts=$this->Classified_post->find('all', array('conditions' => array('Classified_post.sub_category_id' =>$sub_categories_ftc, 'Classified_post.status' => "1"), 'order'=>$order_by, 'limit'=>$limit));
 				
-				@$rst_classified_posts_next=$this->Classified_post->find('all', array('conditions' => array('Classified_post.sub_category_id' =>$sub_categories_ftc,'classified_post.status' => "1"), 'order'=>$order_by, 'limit'=>1, 'offset' => $start_next));
+				@$rst_classified_posts_next=$this->Classified_post->find('all', array('conditions' => array('Classified_post.sub_category_id' =>$sub_categories_ftc,'Classified_post.status' => "1"), 'order'=>$order_by, 'limit'=>1, 'offset' => $start_next));
 				}
 				else
 				{
-					
 					@$rst_classified_posts=$this->Classified_post->find('all', array('conditions' => array('Classified_post.category_id' =>$categories_id, 'Classified_post.status' => "1"), 'order'=>$order_by, 'limit'=>$limit));
 				
-					@$rst_classified_posts_next=$this->Classified_post->find('all', array('conditions' => array('Classified_post.category_id' =>$categories_id,'Classified_post.status' => "1"), 'order'=>$order_by, 'limit'=>1, 'offset' => $start_next));
+					@$rst_classified_posts_next=$this->Classified_post->find('all', array('conditions' => array('Classified_post.category_id' =>$categories_id,'Classified_post.status' => "1"), 'order'=>$order_by, 'limit'=>"1", 'offset' => $start_next));
 				}
 				
 			
@@ -978,6 +982,11 @@ $this->set('new_page_id',$new_page_id);
 			$user_id=$res_values['Classified_post']['user_id'];
 			$click_cnt=$res_values['Classified_post']['click_cnt'];
 		}
+		
+		$this->loadmodel('login');
+		@$login_arr=$this->login->find('all', array('conditions' => array("login.id" =>$user_id)));		
+		 $email_id=$login_arr[0]['login']['email_id'];
+		$this->set('email_id',$email_id);	
 					
 		$this->loadmodel('Registration');
 		@$profile_arr=$this->Registration->find('all', array('conditions' => array("Registration.login_id" =>$user_id)));		
@@ -993,51 +1002,7 @@ $this->set('new_page_id',$new_page_id);
 		$this->set('click_cnt_new',$click_cnt_new);	
 		$this->set('classified_posts_arr',$rst_classified_posts);		
 		
-		if (isset($this->request->data['mail_send'])) 
-		{
-		  	$this->loadmodel('Software_admin_dtl');
-
-           	$ftc_software_admin_dtl=$this->Software_admin_dtl->find('all', array('limit'=> 1));
-
-			$software_admin_name=$ftc_software_admin_dtl[0]['Software_admin_dtl']['software_admin_name'];
-			$email_id_sender=$ftc_software_admin_dtl[0]['Software_admin_dtl']['email_id'];
-			$password=$ftc_software_admin_dtl[0]['Software_admin_dtl']['password'];
-			$subject_tital=$ftc_software_admin_dtl[0]['Software_admin_dtl']['software_title'];
-			
-			@$user_id=$this->request->data['user_id'];
-			@$sub_categories=$this->request->data['sub_categories'];
-			@$categories=$this->request->data['categories'];
-			@$product_name=$this->request->data['product_name'];
-			@$post_id=$this->request->data['post_id'];
 		
-		
-			$this->loadmodel('Login');
-			$sql_login=$this->Login->find('all', array('conditions'=> array('Login.id'=>$user_id),'fields'=>array('email')));
-			$email_post_user=$sql_login[0]['Login']['email'];
-			$this->loadmodel('Registration');
-			$sql_profiles=$this->Registration->find('all', array('conditions'=> array('Registration.login_id'=>$user_id),'fields'=>array('name_of_person')));
-			$display_name=$sql_profiles[0]['Registration']['name_of_person'];
-		
-			@$name_customer=$this->request->data['name'];	
-			@$email_id_customer=$this->request->data['email'];
-			@$phone_customer=$this->request->data['phone'];
-			@$description_customer=$this->request->data['description'];
-		
-			$msg="<p><b>Hello ".$display_name." </b></p> 
-			<p><b> You have a new query form Non Moving Inventory portal for ".$sub_categories." ( ".$categories." ) for ".$product_name." </b></p>
-			<p><b> Name : </b> ".$name_customer."</p>
-			<p><b>Phone No. : </b>".$phone_customer."</p>
-			<p><b>Mail Id.. : </b>".$email_id_customer."</p>
-			<p><b>Message : </b>".$description_customer."</p><br/>";
-			
-		
-      $msg=htmlspecialchars($msg);
-	  $this->loadmodel('Query_detail');
-				$this->query_details->query("insert into  Query_detail set `post_id`='$post_id' ,`user_id`='$user_id' ,`date`='".date('Y-m-d')."',`time`='".date('h:i:s A')."',`sender_name`='$name_customer'
-		,`sender_email_id`='$email_id_customer',`sender_phone`='$phone_customer',`message`='$description_customer', `mail_content`='$msg', `status`='0' ");	
-			$massage="Your request Successfully send"	;
-				$this->set('massage',$massage);
-		}
 	}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1064,6 +1029,61 @@ public function category_setup()
 		
 	}
 }
+
+////////////////// Mailer ////////////////////////////////
+
+function smtpmailer($to, $from_name, $subject, $message_web,$reply, $is_gmail=true)
+{
+App::import('Vendor', 'PhpMailer', array('file' => 'phpmailer' . DS . 'class.phpmailer.php')); 
+
+	global $error;
+	$mail = new PHPMailer();
+	$mail->IsSMTP();
+	$mail->SMTPAuth = true;
+	if ($is_gmail) {
+
+		$mail->SMTPSecure = 'ssl'; 
+		$mail->Host = 'smtp.gmail.com';
+		$mail->Port = 465;  
+		$mail->Username = 'ankit.sisodiya@spsu.ac.in';  
+		$mail->Password = 'sanjay.gupta#123';  
+		$mail->SMTPDebug = 1; 
+	} else {
+		$mail->SMTPSecure = 'ssl'; 
+		$mail->Host = 'smtp.gmail.com';
+		$mail->Port = 465;  
+		$mail->Username = 'ankit.sisodiya@spsu.ac.in';  
+		$mail->Password = 'sanjay.gupta#123';    
+	}        
+	$HTML = true;	 
+	$mail->WordWrap = 50; // set word wrap
+	$mail->IsHTML($HTML);
+
+	
+	
+	
+	$mail->FromName= $from_name;
+
+$mail->Subject = $subject;
+$mail->Body = $message_web;
+$mail->AddReplyTo($reply ,"Nonmoving Inventory");
+$mail->addAddress($to);
+
+	if(!$mail->Send()) {
+		$error = 'Mail error: '.$mail->ErrorInfo;
+		return false;
+	} else {
+		$error = 'Message sent!';
+		return true;
+	}
+}
+
+
+
+
+
+
+
 	
 //////////////////////////       Ajax    ///////////////////////////////////////////////////////////
 	
@@ -1081,10 +1101,13 @@ public function ajax_function()
         
             var name=$("#name").val();
             var email=$("#email").val();
+			var email_to=$("#email_to").val();
             var phone=$("#phone").val();
             var message=$("#message").val();
-            var query="?name=" + encodeURIComponent(name) + "&email=" + encodeURIComponent(email) + "&phone=" + encodeURIComponent(phone) + "&message=" + encodeURIComponent(message);
+            var query="?name=" + encodeURIComponent(name) + "&email=" + encodeURIComponent(email) + "&email_to=" + encodeURIComponent(email_to) + "&phone=" + encodeURIComponent(phone) + "&message=" + encodeURIComponent(message);
             $("#enquiry_loading").html('<center><img src="<?PHP echo $this->webroot; ?>images/ajax-loaders/loading_windows.gif" width="70px" ></center>').load('enquiry_submit'+query);	
+					
+
         });
         
         /////////////////////////////////////////////////////////////////////////////
@@ -1239,7 +1262,7 @@ public function ajax_function()
     function member_aprove_panding(click_status)
     {
         
-         var query="?click_status=" + click_status ;
+         var query="?click_status=" + click_status;
     //	  document.getElementById("getdata").innerHTML=' <div align="center" style="font-size:15px;"><img src="img/ajax-loaders/ajax-loader-7.gif" ></div>';
     location.href="ad_approval_panding"+ query;
     }  

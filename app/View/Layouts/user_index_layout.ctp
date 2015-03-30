@@ -270,12 +270,12 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
                                 <span class="selected"></span>
                                 </a>
                             </li>
-                          <!--  <li>
+                          <li>
 								<a href="<?php echo $this->webroot; ?>nonmovinginventoris/ecommerce_products">
 								<i class="icon-handbag"></i>
 								Products</a>
 							</li>
-							<li>
+							  <!--<li>
 								<a href="ecommerce_orders.html">
 								<i class="icon-basket"></i>
 								Orders</a>
