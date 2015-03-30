@@ -2,7 +2,7 @@
 App::uses('AppController', 'Controller');
 App::uses('Folder', 'Utility');
 App::uses('File', 'Utility');
-class nonmovinginventorisController extends AppController
+class NonmovinginventorisController extends AppController
 {
 	 var $helpers = array('Html', 'Form');
 	 public $components = array(
@@ -394,7 +394,7 @@ public function ecommerce_products()
 			
 			if(!empty($max_price) && !empty($min_price) )
 			{
-				$conditions =array ('Classified_post.status ' => "1",'Classified_post.price between ? and ?' => array($min_price, $max_price),
+				$conditions =array ('Classified_post.status' => "1",'Classified_post.price between ? and ?' => array($min_price, $max_price),
                             'OR' => array(
 								array('Classified_post.short_description LIKE' => "%$search_by_meta%"),
             					array('Classified_post.description LIKE' => "%$search_by_meta%"),
@@ -453,7 +453,7 @@ public function ecommerce_products()
 					{
 						@$rst_classified_posts=$this->Classified_post->find('all', array(
 						'conditions' => array(
-						'Classified_post.sub_category_id' =>$sub_categories_ftc,'Classified_post.status ' => "1",
+						'Classified_post.sub_category_id' =>$sub_categories_ftc,'Classified_post.status' => "1",
 						'Classified_post.price between ? and ?' => array($min_price, $max_price)
 						),
 						'order'=>$order_by,
@@ -464,7 +464,7 @@ public function ecommerce_products()
 					{
 						@$rst_classified_posts=$this->Classified_post->find('all', array(
 						'conditions' => array(
-						'Classified_post.category_id' =>$categories_id,'Classified_post.status ' => "1",
+						'Classified_post.category_id' =>$categories_id,'Classified_post.status' => "1",
 						'Classified_post.price between ? and ?' => array($min_price, $max_price)
 						),
 						'order'=>$order_by,
@@ -479,7 +479,7 @@ public function ecommerce_products()
 					{
 							@$rst_classified_posts=$this->Classified_post->find('all', array(
 						'conditions' => array(
-						"Classified_post.sub_category_id" =>$sub_categories_ftc,'Classified_post.status ' => "1"
+						"Classified_post.sub_category_id" =>$sub_categories_ftc,'Classified_post.status' => "1"
 						),
 						'order'=>$order_by,
 						'limit'=>$limit,
@@ -489,7 +489,7 @@ public function ecommerce_products()
 					{
 						@$rst_classified_posts=$this->Classified_post->find('all', array(
 						'conditions' => array(
-						"Classified_post.category_id" =>$categories_id,'Classified_post.status ' => "1"
+						"Classified_post.category_id" =>$categories_id,'Classified_post.status' => "1"
 						),
 						'order'=>$order_by,
 						'limit'=>$limit,
@@ -531,7 +531,7 @@ public function ecommerce_products()
 				{
 				@$rst_classified_posts=$this->Classified_post->find('all', array(
 				'conditions' => array(
-				'Classified_post.sub_category_id' =>$sub_categories_id,'Classified_post.status ' => "1",
+				'Classified_post.sub_category_id' =>$sub_categories_id,'Classified_post.status' => "1",
 				'Classified_post.price between ? and ?' => array($min_price, $max_price)
 				),
 				'order'=>$order_by,
@@ -543,7 +543,7 @@ public function ecommerce_products()
 				{
 					@$rst_classified_posts=$this->Classified_post->find('all', array(
 				'conditions' => array(
-				"Classified_post.sub_category_id" =>$sub_categories_id,'Classified_post.status ' => "1"
+				"Classified_post.sub_category_id" =>$sub_categories_id,'Classified_post.status' => "1"
 				),
 				'order'=>$order_by,
 				'limit'=>$limit,
@@ -556,8 +556,8 @@ public function ecommerce_products()
 			
 		}
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public function categories_details() 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+	 function categories_details() 
 	{
 		$this->layout='index_layout';
 
@@ -566,7 +566,7 @@ public function ecommerce_products()
 		$categories_id=$this->request->query('categories_id');
 		$search_by_meta=$this->request->query('search_by_meta');		
 		$sub_categories_id=$this->request->query('sub_categories_id');		
-	
+		
 		
 		if(!empty($search_by_meta ))
 		{
@@ -576,7 +576,7 @@ public function ecommerce_products()
 		
 						$this->loadmodel('Classified_post');
 				
-						$conditions =array ('Classified_post.status ' => "1",
+						$conditions =array ('Classified_post.status' => "1",
                             'OR' => array(
 								array('Classified_post.short_description LIKE' => "%$search_by_meta%"),
             					array('Classified_post.description LIKE' => "%$search_by_meta%"),
@@ -591,6 +591,7 @@ public function ecommerce_products()
 		}
 		else if(!empty($categories_id))
 		{
+			
 				$categories_id=$this->request->query('categories_id');
 				$order_by='id DESC';
 		
@@ -606,19 +607,21 @@ public function ecommerce_products()
 				{
 					$sub_categories_ftc=$res_values['Sub_categorie']['id'];	
 				}
+				
 				$this->loadmodel('Classified_post');
 				if(!empty($sub_categories_ftc) && !empty($sub_categories_id))
 				{
 					
-					@$rst_classified_posts=$this->Classified_post->find('all', array('conditions' => array('Classified_post.sub_category_id' =>$sub_categories_ftc, 'Classified_post.status ' => "1"), 'order'=>$order_by, 'limit'=>$limit));
+					@$rst_classified_posts=$this->Classified_post->find('all', array('conditions' => array('Classified_post.sub_category_id' =>$sub_categories_ftc, 'Classified_post.status' => "1"), 'order'=>$order_by, 'limit'=>$limit));
 				
-				@$rst_classified_posts_next=$this->Classified_post->find('all', array('conditions' => array('Classified_post.sub_category_id' =>$sub_categories_ftc,'classified_post.status ' => "1"), 'order'=>$order_by, 'limit'=>1, 'offset' => $start_next));
+				@$rst_classified_posts_next=$this->Classified_post->find('all', array('conditions' => array('Classified_post.sub_category_id' =>$sub_categories_ftc,'classified_post.status' => "1"), 'order'=>$order_by, 'limit'=>1, 'offset' => $start_next));
 				}
 				else
 				{
-					@$rst_classified_posts=$this->Classified_post->find('all', array('conditions' => array('Classified_post.category_id' =>$categories_id, 'Classified_post.status ' => "1"), 'order'=>$order_by, 'limit'=>$limit));
+					
+					@$rst_classified_posts=$this->Classified_post->find('all', array('conditions' => array('Classified_post.category_id' =>$categories_id, 'Classified_post.status' => "1"), 'order'=>$order_by, 'limit'=>$limit));
 				
-					@$rst_classified_posts_next=$this->Classified_post->find('all', array('conditions' => array('Classified_post.category_id' =>$categories_id,'classified_post.status ' => "1"), 'order'=>$order_by, 'limit'=>1, 'offset' => $start_next));
+					@$rst_classified_posts_next=$this->Classified_post->find('all', array('conditions' => array('Classified_post.category_id' =>$categories_id,'Classified_post.status' => "1"), 'order'=>$order_by, 'limit'=>1, 'offset' => $start_next));
 				}
 				
 			
@@ -659,7 +662,7 @@ public function ecommerce_products()
 			@$rst_classified_posts=$this->Classified_post->find('all', array(
 			'conditions' => array(
 			'Classified_post.sub_category_id' =>$sub_categories_id,
-			'Classified_post.status ' => "1"
+			'Classified_post.status' => "1"
 			),
 			'order'=>$order_by,
 			'limit'=>$limit,
@@ -668,7 +671,7 @@ public function ecommerce_products()
 			@$rst_classified_posts_next=$this->Classified_post->find('all', array(
 			'conditions' => array(
 			'Classified_post.sub_category_id' =>$sub_categories_id,
-			'Classified_post.status ' => "1"
+			'Classified_post.status' => "1"
 			),
 			'order'=>$order_by,
 			'limit'=>1,
@@ -773,7 +776,7 @@ public function ecommerce_products()
 			
 				@$rst_classified_posts=$this->Classified_post->find('all', array(
 				'conditions' => array(
-				'Classified_post.sub_category_id' =>$sub_categories_ftc,'Classified_post.status ' => "1",
+				'Classified_post.sub_category_id' =>$sub_categories_ftc,'Classified_post.status' => "1",
 				'Classified_post.price between ? and ?' => array($min_price, $max_price)
 				),
 							'order'=>$order_by,
@@ -784,7 +787,7 @@ public function ecommerce_products()
 					
 						@$rst_classified_posts_next=$this->Classified_post->find('all', array(
 					'conditions' => array(
-				'Classified_post.sub_category_id' =>$sub_categories_ftc,'Classified_post.status ' => "1",
+				'Classified_post.sub_category_id' =>$sub_categories_ftc,'Classified_post.status' => "1",
 				'Classified_post.price between ? and ?' => array($min_price, $max_price)
 				),
 							'order'=>$order_by,
@@ -798,7 +801,7 @@ public function ecommerce_products()
 				{
 							@$rst_classified_posts=$this->Classified_post->find('all', array(
 						'conditions' => array(
-							"Classified_post.sub_category_id" =>$sub_categories_ftc,'Classified_post.status ' => "1"
+							"Classified_post.sub_category_id" =>$sub_categories_ftc,'Classified_post.status' => "1"
 							),
 							'order'=>$order_by,
 							'limit'=> $limit,
@@ -808,7 +811,7 @@ public function ecommerce_products()
 					
 						@$rst_classified_posts_next=$this->Classified_post->find('all', array(
 						'conditions' => array(
-							"Classified_post.sub_category_id" =>$sub_categories_ftc,'Classified_post.status ' => "1"
+							"Classified_post.sub_category_id" =>$sub_categories_ftc,'Classified_post.status' => "1"
 							),
 							'order'=>$order_by,
 							'limit'=> 1,
@@ -839,7 +842,7 @@ public function ecommerce_products()
 				
 						@$rst_classified_posts=$this->classified_posts->find('all', array(
 					'conditions' => array(
-				'Classified_post.sub_category_id' =>$sub_categories_id,'Classified_post.status ' => "1",
+				'Classified_post.sub_category_id' =>$sub_categories_id,'Classified_post.status' => "1",
 				'Classified_post.price between ? and ?' => array($min_price, $max_price)
 				),
 							'order'=>$order_by,
@@ -850,7 +853,7 @@ public function ecommerce_products()
 					
 					@$rst_classified_posts_next=$this->Classified_post->find('all', array(
 					'conditions' => array(
-				'Classified_post.sub_category_id' =>$sub_categories_id,'Classified_post.status ' => "1",
+				'Classified_post.sub_category_id' =>$sub_categories_id,'Classified_post.status' => "1",
 				'Classified_post.price between ? and ?' => array($min_price, $max_price)
 				),
 							'order'=>$order_by,
@@ -862,7 +865,7 @@ public function ecommerce_products()
 					
 					@$rst_classified_posts_next=$this->Classified_post->find('all', array(
 						'conditions' => array(
-							"Classified_post.sub_category_id" =>$sub_categories_ftc,'Classified_post.status ' => "1"
+							"Classified_post.sub_category_id" =>$sub_categories_ftc,'Classified_post.status' => "1"
 							),
 							'order'=>$order_by,
 							'limit'=> 1,
@@ -875,7 +878,7 @@ public function ecommerce_products()
 				{
 							@$rst_classified_posts=$this->Classified_post->find('all', array(
 						'conditions' => array(
-							"Classified_post.sub_category_id" =>$sub_categories_id,'Classified_post.status ' => "1"
+							"Classified_post.sub_category_id" =>$sub_categories_id,'Classified_post.status' => "1"
 							),
 							'order'=>$order_by,
 							'limit'=> $limit,
@@ -885,7 +888,7 @@ public function ecommerce_products()
 					
 						@$rst_classified_posts_next=$this->Classified_post->find('all', array(
 						'conditions' => array(
-							"Classified_post.sub_category_id" =>$sub_categories_id,'Classified_post.status ' => "1"
+							"Classified_post.sub_category_id" =>$sub_categories_id,'Classified_post.status' => "1"
 							),
 							'order'=>$order_by,
 						'limit'=>1,
@@ -909,7 +912,7 @@ public function ecommerce_products()
 			
 				if(!empty($max_price) && !empty($min_price) )
 				{
-					$conditions =array ('Classified_post.status ' => "1",'Classified_post.price between ? and ?' => array($min_price, $max_price),
+					$conditions =array ('Classified_post.status' => "1",'Classified_post.price between ? and ?' => array($min_price, $max_price),
                             'OR' => array(
 								array('Classified_post.short_description LIKE' => "%$search_by_meta%"),
             					array('Classified_post.description LIKE' => "%$search_by_meta%"),
@@ -922,7 +925,7 @@ public function ecommerce_products()
 				else
 				{
 						
-					$conditions =array ('Classified_post.status ' => "1",
+					$conditions =array ('Classified_post.status' => "1",
                             'OR' => array(
 								array('Classified_post.short_description LIKE' => "%$search_by_meta%"),
             					array('Classified_post.description LIKE' => "%$search_by_meta%"),
