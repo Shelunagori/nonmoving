@@ -47,7 +47,7 @@ echo $this->fetch('meta'); ?>
 <link href="<?php echo $this->webroot; ?>theme_admin/assets/admin/layout2/css/layout.css" rel="stylesheet" type="text/css"/>
 <link href="<?php echo $this->webroot; ?>theme_admin/assets/admin/layout2/css/themes/grey.css" rel="stylesheet" type="text/css" id="style_color"/>
 <!-- END THEME STYLES -->
-<link rel="<?php echo $this->webroot; ?>theme_admin/shortcut icon" href="favicon.ico"/>
+<link rel="shortcut icon" href="<?php echo $this->webroot; ?>theme_admin/images/shortcut_icon/non-moving-logo.png"/>
 <style>
 
 
