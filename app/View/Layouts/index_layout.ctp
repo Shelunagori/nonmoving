@@ -45,17 +45,12 @@ echo $this->fetch('meta'); ?>
 <!-- END THEME STYLES -->
 <link rel="<?php echo $this->webroot; ?>theme_admin/shortcut icon" href="favicon.ico"/>
 <style>
-.title-main {
-    font-size: 25px;
-    font-weight: 400;
-    color: #E35C59;
-}
 
 .mycolour
 {
 	color:#C2C1C1;
 }
-
+/*
 @media (max-width: 1030px) 
 {
  .navbar-brand {
@@ -90,6 +85,7 @@ echo $this->fetch('meta'); ?>
 	
 	
 }
+}
 
 @media (max-width: 565px) {
   .navbar-brand {  
@@ -97,7 +93,7 @@ echo $this->fetch('meta'); ?>
 	
 	
 }
-}
+}*/
 </style>
   
         <!-- ---------------------------------------------start  java script  header ---------------------------------------------   -->
@@ -121,7 +117,7 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
 		
 		<!-- BEGIN PAGE TOP -->
 		<div class="page-top">
-         <span class="title-main navbar-brand tk-adelle" style="padding-top: 20px;"><b>NON MOVING INVENTORY</b></span>
+         <span class="title-main navbar-brand tk-adelle"><img src="<?php echo $this->webroot; ?>images/project_logo/non-moving-logo.png" width="200" alt="NON MOVING INVENTORY"></span>
 			<!-- BEGIN HEADER SEARCH BOX -->
 			<!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
 			<form class="search-form search-form-expanded" action="<?php echo $this->webroot; ?>nonmovinginventoris/categories_details" method="GET">

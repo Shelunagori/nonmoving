@@ -1060,8 +1060,6 @@ App::import('Vendor', 'PhpMailer', array('file' => 'phpmailer' . DS . 'class.php
 	$mail->IsHTML($HTML);
 
 	
-	
-	
 	$mail->FromName= $from_name;
 
 $mail->Subject = $subject;

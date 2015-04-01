@@ -49,17 +49,13 @@ echo $this->fetch('meta'); ?>
 <!-- END THEME STYLES -->
 <link rel="<?php echo $this->webroot; ?>theme_admin/shortcut icon" href="favicon.ico"/>
 <style>
-.title-main {
-    font-size: 25px;
-    font-weight: 400;
-    color: #E35C59;
-}
+
 
 .mycolour
 {
 	color:#C2C1C1;
 }
-
+/*
 @media (max-width: 1030px) 
 {
  .navbar-brand {
@@ -92,7 +88,7 @@ echo $this->fetch('meta'); ?>
   .navbar-brand {  
 	font-size:16px !important;
 	
-	
+  }
 }
 
 @media (max-width: 565px) {
@@ -101,7 +97,7 @@ echo $this->fetch('meta'); ?>
 	
 	
 }
-}
+}*/
 </style>
   
         <!-- ---------------------------------------------start  java script  header ---------------------------------------------   -->
@@ -125,7 +121,7 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
 		
 		<!-- BEGIN PAGE TOP -->
 		<div class="page-top">
-         <span class="title-main navbar-brand tk-adelle" style="padding-top: 20px;"><b>NON MOVING INVENTORY</b></span>
+         <span class="title-main navbar-brand tk-adelle"><img src="<?php echo $this->webroot; ?>images/project_logo/non-moving-logo.png" width="200" alt="NON MOVING INVENTORY"></span>
       	  <div class="page-actions">
 		<!--	<div class="btn-group">
 				<button type="button" class="btn btn-circle red-pink dropdown-toggle" data-toggle="dropdown">
@@ -270,11 +266,11 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
                                 <span class="selected"></span>
                                 </a>
                             </li>
-                          <li>
+                          <!--<li>
 								<a href="<?php echo $this->webroot; ?>nonmovinginventoris/ecommerce_products">
 								<i class="icon-handbag"></i>
 								Products</a>
-							</li>
+							</li>-->
 							  <!--<li>
 								<a href="ecommerce_orders.html">
 								<i class="icon-basket"></i>
