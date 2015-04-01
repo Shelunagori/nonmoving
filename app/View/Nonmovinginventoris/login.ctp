@@ -1,5 +1,5 @@
 <div class="logo">
-	<h3 style="color:#E6400C"><b>NonmovingInventory</b></h3>
+	<img src="<?php echo $this->webroot; ?>images/project_logo/non-moving-logo.png" width="250" alt="NON MOVING INVENTORY">
 </div>
 <div class="content">
 	<!-- BEGIN LOGIN FORM -->
