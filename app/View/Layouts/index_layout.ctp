@@ -50,50 +50,17 @@ echo $this->fetch('meta'); ?>
 {
 	color:#C2C1C1;
 }
-/*
-@media (max-width: 1030px) 
+
+@media (max-width: 480px) 
 {
- .navbar-brand {
- 
-	font-size:19px !important;
-
+  .navbar-brand > img
+  {  
+ 	height:50px;
+	width:160px;
+	margin-right:10px;
 	
+  }
 }
-
-}
-@media (max-width: 991px) 
-{
- .navbar-inverse .navbar-brand {
- 
-	font-size:19px !important;
-	
-}
-
-}
-@media (max-width:800px) 
-{
- .navbar-brand {
- 
-	font-size:18px !important;
-	
-	
-}
-}
-@media (max-width: 765px) {
-  .navbar-brand {  
-	font-size:16px !important;
-	
-	
-}
-}
-
-@media (max-width: 565px) {
-  .navbar-brand {  
-	font-size:12px !important;
-	
-	
-}
-}*/
 </style>
   
         <!-- ---------------------------------------------start  java script  header ---------------------------------------------   -->

@@ -57,7 +57,7 @@ foreach($classified_posts_arr as $ftc_classified_post)
    color: #fff;
 }
 </style>
- <div  class="row>"
+ <div  class="row">
 	<div class="col-md-6">
             <div class="product-page">
               <div class="row">
