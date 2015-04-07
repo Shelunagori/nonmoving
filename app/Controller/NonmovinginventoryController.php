@@ -392,8 +392,8 @@ public function ecommerce_products()
 				$result = $this->login->find('all',array('conditions'=>$conditions));
 				$user_id=$result[0]['login']['id'];
 				$data=base64_encode($user_id);;
-				//$message_web='<a href="52.74.15.170/nonmoving/nonmovinginventory/reset_password?data="'.$data.'">Click here to reset password.</a>';
-				$message_web='<a href="localhost/nonmoving/nonmovinginventory/reset_password?data='.$data.'">Click here to reset password.</a>';
+				$message_web='<a href="52.74.15.170/nonmoving/nonmovinginventory/reset_password?data="'.$data.'">Click here to reset password.</a>';
+				//$message_web='<a href="localhost/nonmoving/nonmovinginventory/reset_password?data='.$data.'">Click here to reset password.</a>';
 				$this->smtpmailer($email_id,'Nonmoving Inventory','Reset Password',$message_web,'');
 				 echo "<script>window.close();</script>";
 			}
