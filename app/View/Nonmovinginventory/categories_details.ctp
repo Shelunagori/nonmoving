@@ -181,7 +181,7 @@ if(!empty($search_by_meta) || !empty($categories_id) || !empty($sub_categories_i
 								$photo_arr=explode(',', $ftc_classified_post['Classified_post']['photo']);
 								$photo_first=$photo_arr[0];
 								
-								$return_array=$this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'find_city_states_sub_category'),array('pass'=>array($ftc_classified_post['Classified_post']['city_id'],$ftc_classified_post['Classified_post']['sub_category_id'])));
+								$return_array=$this->requestAction(array('controller' => 'Nonmovinginventory', 'action' => 'find_city_states_sub_category'),array('pass'=>array($ftc_classified_post['Classified_post']['city_id'],$ftc_classified_post['Classified_post']['sub_category_id'])));
 								
 								$city_name=$return_array[0];
 								$states=$return_array[1];

@@ -24,7 +24,7 @@ foreach($classified_posts_arr_ajax as $ftc_classified_post)
 				$photo_arr=explode(',', $photo);
 			   $photo_first=$photo_arr[0];
 	
-	$return_array=$this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'find_city_states_sub_category'),array('pass'=>array($city_id,$sub_category_id)));
+	$return_array=$this->requestAction(array('controller' => 'Nonmovinginventory', 'action' => 'find_city_states_sub_category'),array('pass'=>array($city_id,$sub_category_id)));
 	
 	$city_name=$return_array[0];
 	$states=$return_array[1];

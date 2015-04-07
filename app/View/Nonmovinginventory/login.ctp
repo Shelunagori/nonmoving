@@ -32,20 +32,20 @@
 			<input class="form-control form-control-solid placeholder-no-fix" autocomplete="off" placeholder="Password" name="password" type="password">
 		</div>
 		<div class="form-actions">
-			<button type="submit" class="btn btn-success uppercase">Login</button>
+			<button type="submit" name="login_submit" class="btn btn-success uppercase">Login</button>
 		
 			<a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
 		</div>
 		
 		<div class="create-account">
 			<p>
-				<a href="<?php echo $this->webroot; ?>nonmovinginventoris/register"  class="uppercase">Create an account</a>
+				<a href="<?php echo $this->webroot; ?>Nonmovinginventory/register"  class="uppercase">Create an account</a>
 			</p>
 		</div>
 	</form>
 	<!-- END LOGIN FORM -->
 	<!-- BEGIN FORGOT PASSWORD FORM -->
-	<form novalidate="novalidate" class="forget-form" action="index.html" method="post">
+	<form novalidate="novalidate" class="forget-form"  method="post">
 		<h3>Forget Password ?</h3>
 		<p>
 			 Enter your e-mail address below to reset your password.
@@ -55,7 +55,7 @@
 		</div>
 		<div class="form-actions">
 			<button type="button" id="back-btn" class="btn btn-default">Back</button>
-			<button type="submit" class="btn btn-success uppercase pull-right">Submit</button>
+			<button type="submit" name="reset_password" onclick="javascript:;window.close();" class="btn btn-success uppercase pull-right">Submit</button>
 		</div>
 	</form>
 	<!-- END FORGOT PASSWORD FORM -->

@@ -71,7 +71,7 @@ echo $this->fetch('meta'); ?>
          <script src="<?php echo $this->webroot; ?>assets/javascripts/jquery-411a53b27134bb9f6289afadeb2ea0b3.js"></script>
     <script src="<?php echo $this->webroot; ?>assets/javascripts/bootstrap-js-9740c835b5d9e905f6e4960383ab36a0.js"></script>
    <?php    
-$this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'ajax_function'), array());
+$this->requestAction(array('controller' => 'Nonmovinginventory', 'action' => 'ajax_function'), array());
 ?>   
 </head>
 <!-- --------------------------------start  menu  header--------------------------------------------- -->
@@ -128,7 +128,7 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
 				</button>
 				<ul class="dropdown-menu" role="menu">
 					<li>
-						<a href="<?php echo $this->webroot; ?>nonmovinginventoris/ecommerce_new_post">
+						<a href="<?php echo $this->webroot; ?>Nonmovinginventory/ecommerce_new_post">
 						<i class="icon-docs"></i> New Post </a>
 					</li>
 					<li>
@@ -156,7 +156,7 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
 		</div>
 			<!-- BEGIN HEADER SEARCH BOX -->
 			<!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-			<form class="search-form search-form-expanded" action="<?php echo $this->webroot; ?>nonmovinginventoris/categories_details" method="GET">
+			<form class="search-form search-form-expanded" action="<?php echo $this->webroot; ?>Nonmovinginventory/categories_details" method="GET">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search..." name="search_by_meta">
 					<span class="input-group-btn">
@@ -180,14 +180,14 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
 						</a>
 						<ul class="dropdown-menu dropdown-menu-default">
 							<li>
-								<a href="<?php echo $this->webroot; ?>nonmovinginventoris/user_profile">
+								<a href="<?php echo $this->webroot; ?>Nonmovinginventory/user_profile">
 								<i class="icon-user"></i> My Profile </a>
 							</li>
 							
 							
 							
 							<li>
-								<a href="<?php echo $this->webroot; ?>nonmovinginventoris/index">
+								<a href="<?php echo $this->webroot; ?>Nonmovinginventory/index">
 								<i class="icon-key"></i> Log Out </a>
 							</li>
 						</ul>
@@ -212,7 +212,7 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
        		 <div class="page-sidebar navbar-collapse collapse">
 				<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu page-sidebar-menu-closed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
 					<li class="start active ">
-						<a href="<?php echo $this->webroot; ?>nonmovinginventoris/user_index">
+						<a href="<?php echo $this->webroot; ?>Nonmovinginventory/user_index">
 						<i class="icon-home"></i>
 						<span class="title">Dashboard</span>
 						<span class="selected"></span>
@@ -227,17 +227,17 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
 						</a>
 						<ul class="sub-menu">
 							<li>
-                                <a href="<?php echo $this->webroot; ?>nonmovinginventoris/ecommerce_new_post">
+                                <a href="<?php echo $this->webroot; ?>Nonmovinginventory/ecommerce_new_post">
                                 <i class="icon-docs"></i>
                                 <span class="title">New Post</span>
                                 <span class="selected"></span>
                                 </a>
                             </li>
-                          <!--<li>
-								<a href="<?php echo $this->webroot; ?>nonmovinginventoris/ecommerce_products">
+                          <li>
+								<a href="<?php echo $this->webroot; ?>Nonmovinginventory/ecommerce_products">
 								<i class="icon-handbag"></i>
 								Products</a>
-							</li>-->
+							</li>
 							  <!--<li>
 								<a href="ecommerce_orders.html">
 								<i class="icon-basket"></i>
@@ -264,7 +264,7 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
 		</div>
 		<!-- END SIDEBAR -->
 <?php    
-//$this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'menu_header'), array());
+//$this->requestAction(array('controller' => 'Nonmovinginventory', 'action' => 'menu_header'), array());
 ?>
 <!-- --------------------------------end  menu  header--------------------------------------------- -->
 <!-- BEGIN CONTENT -->
@@ -293,10 +293,10 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
           <!-- BEGIN PAYMENTS -->
           <div class="col-md-6 col-sm-6 padding-top-10" >
             <ul class="social-footer list-unstyled list-inline pull-right">
-              <li><a href="<?php echo $this->webroot; ?>nonmovinginventoris/term_services" style="font-size:17px;color:#57C8EB;"> T &amp; C</a></li>
-                <li><a href="<?php echo $this->webroot; ?>nonmovinginventoris/faqs" style="font-size:17px;color:#57C8EB;">FAQ</a></li>
-                <li><a href="<?php echo $this->webroot; ?>nonmovinginventoris/about_us" style="font-size:17px;color:#57C8EB;">About Us</a></li>
-                <li><a href="<?php echo $this->webroot; ?>nonmovinginventoris/contact_us" style="font-size:17px;color:#57C8EB;">Contact Us</a></li>
+              <li><a href="<?php echo $this->webroot; ?>Nonmovinginventory/term_services" style="font-size:17px;color:#57C8EB;"> T &amp; C</a></li>
+                <li><a href="<?php echo $this->webroot; ?>Nonmovinginventory/faqs" style="font-size:17px;color:#57C8EB;">FAQ</a></li>
+                <li><a href="<?php echo $this->webroot; ?>Nonmovinginventory/about_us" style="font-size:17px;color:#57C8EB;">About Us</a></li>
+                <li><a href="<?php echo $this->webroot; ?>Nonmovinginventory/contact_us" style="font-size:17px;color:#57C8EB;">Contact Us</a></li>
             </ul>  
           </div>
           <!-- END PAYMENTS -->

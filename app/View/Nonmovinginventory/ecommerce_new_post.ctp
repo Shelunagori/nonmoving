@@ -121,7 +121,7 @@ select
                                                     ?>
                                                         <optgroup label="<?php echo $states ; ?>">
                                                         <?php 
-                                                            $return_array=$this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'find_city_arr'),array('pass'=>array($states_id)));
+                                                            $return_array=$this->requestAction(array('controller' => 'Nonmovinginventory', 'action' => 'find_city_arr'),array('pass'=>array($states_id)));
                                                         foreach($return_array as $value_city_nmae)
                                                     { 
                                                         

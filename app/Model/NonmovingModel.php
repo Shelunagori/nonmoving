@@ -2,6 +2,7 @@
 App::uses('AppModel', 'Model');
 class NonmovingModel extends AppModel
 {
+	public $primaryKey='id';
 	/* public $validate = array(
 			'company_name' => array('rule' => 'notEmpty', 'message' => 'notEmpty'),
 			'year_incorpration' => array('rule' => 'notEmpty', 'message' => 'notEmpty')

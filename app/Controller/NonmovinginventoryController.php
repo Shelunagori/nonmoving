@@ -2,7 +2,7 @@
 App::uses('AppController', 'Controller');
 App::uses('Folder', 'Utility');
 App::uses('File', 'Utility');
-class NonmovinginventorisController extends AppController
+class NonmovinginventoryController extends AppController
 {
 	 var $helpers = array('Html', 'Form');
 	 public $components = array(
@@ -330,7 +330,7 @@ public function ecommerce_products()
 				$this->Session->setFlash(__('This email id is allready exists.'));
 				
 			}
-			exit;
+			//exit;
 		}
 	///////////////// submit register ///////////////////////
     }
@@ -338,7 +338,9 @@ public function ecommerce_products()
 	public function login() 
 	{
 		$this->layout='login_layout';
-		
+		///////////////// submit login ///////////////////////
+		if (isset($this->request->data['login_submit']))
+		{
 			if($this->request->is('post')) 
 			{
 				$email_id=htmlentities($this->request->data["email_id"]);
@@ -376,9 +378,62 @@ public function ecommerce_products()
 					}	
 				}
 			}
+		}
 	///////////////// submit login ///////////////////////
+	///////////////// reset password ///////////////////////
+		if (isset($this->request->data['reset_password']))
+		{
+			if($this->request->is('post')) 
+			{
+				$this->Session->write('reset_password', 'true');
+				$email_id=htmlentities($this->data["email"]);
+				$this->loadmodel('login');
+				$conditions=array("email_id" => $email_id);
+				$result = $this->login->find('all',array('conditions'=>$conditions));
+				$user_id=$result[0]['login']['id'];
+				$data=base64_encode($user_id);;
+				//$message_web='<a href="52.74.15.170/nonmoving/nonmovinginventory/reset_password?data="'.$data.'">Click here to reset password.</a>';
+				$message_web='<a href="localhost/nonmoving/nonmovinginventory/reset_password?data='.$data.'">Click here to reset password.</a>';
+				$this->smtpmailer($email_id,'Nonmoving Inventory','Reset Password',$message_web,'');
+				 echo "<script>window.close();</script>";
+			}
+		}
+		///////////////// reset password ///////////////////////
     }
-	
+	public function reset_password() 
+	{
+		$this->layout='login_layout';
+		$this->Session->read('reset_password', 'true');
+		
+		if (isset($this->request->data['confirm_submit']))
+		{
+			if($this->request->is('post')) 
+			{
+				$new_password=htmlentities($this->data["new_password"]);
+				$retype_password=htmlentities($this->data["retype_password"]);
+				
+				if(($new_password==$retype_password) && (!empty($new_password)))
+				{
+					$password=md5($new_password);
+					$login_id=base64_decode($this->request->query['data']);
+					$this->loadmodel('login');
+					$this->login->updateAll(array('password'=>"'$password'"), array('id'=>$login_id));
+					
+					$conditions=array('id' => $login_id);
+					$result = $this->login->find('all', array('conditions'=>$conditions));
+					$designation_id=$result[0]['login']['designation_id'];
+					
+					$this->Session->write('user_id', $login_id);
+					$this->Session->write('designation_id', $designation_id);
+					$this->redirect(array('action' => 'user_index'));
+				}
+				else
+				{
+					$this->set('wrong', 'Enter re-type correct password.');
+				}
+			}
+		}
+	}
 	function categories_details_asc_desc_sort()
 	{
 		$this->layout='ajax_layout';
@@ -1000,7 +1055,7 @@ $this->set('new_page_id',$new_page_id);
 		
 		$click_cnt_new=$click_cnt+1;	
 		$this->loadmodel('Classified_post');
-		$this->Classified_post->updateAll(array('click_cnt'=>$click_cnt_new), array('Classified_post.id'=>$post_id));
+		$this->Classified_post->updateAll(array('click_cnt'=>"'$click_cnt_new'"), array('Classified_post.id'=>$post_id));
 			
 		$this->set('display_name',$name_of_person);		
 		$this->set('company_name',$organization_name);	
@@ -1069,7 +1124,10 @@ App::import('Vendor', 'PhpMailer', array('file' => 'phpmailer' . DS . 'class.php
 
 $mail->Subject = $subject;
 $mail->Body = $message_web;
-$mail->AddReplyTo($reply ,"Nonmoving Inventory");
+if(!empty($reply))
+{
+	$mail->AddReplyTo($reply ,"Nonmoving Inventory");
+}
 $mail->addAddress($to);
 
 	if(!$mail->Send()) {
@@ -1092,6 +1150,7 @@ $mail->addAddress($to);
 	
 public function ajax_function()
 {
+	 
 ?>
 	<script src="<?php echo $this->webroot; ?>theme_admin/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
   

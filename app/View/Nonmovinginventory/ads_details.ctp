@@ -40,7 +40,7 @@ foreach($classified_posts_arr as $ftc_classified_post)
 				$img_cnt=sizeof($photo_arr);
 				$photo_first=$photo_arr[0];
 			}
-			$return_array=$this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'find_city_states_sub_category'),array('pass'=>array($city_id,$sub_categories_id)));
+			$return_array=$this->requestAction(array('controller' => 'Nonmovinginventory', 'action' => 'find_city_states_sub_category'),array('pass'=>array($city_id,$sub_categories_id)));
 			
 			$city_name=$return_array[0];
 			$states=$return_array[1];

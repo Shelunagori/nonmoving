@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_ACTIVE)
 {
 	session_destroy();
 }
-//$themes_active_id=$this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'themes_active_id'), array());
+//$themes_active_id=$this->requestAction(array('controller' => 'Nonmovinginventory', 'action' => 'themes_active_id'), array());
 $submit_succ=1;
 ?>
 <script src="<?php echo $this->webroot; ?>theme_admin/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
@@ -104,7 +104,7 @@ $submit_succ=1;
 				 ?>
                       <div class="item col-md-2">
                         <img src="<?php echo $this->webroot; ?>images/icon_category/<?php echo $categories_ftc['Categorie']['icon']; ?>" alt="NAME" style="height:170px; width:100%;" class="img-responsive">
-                        <a href="<?php echo $this->webroot; ?>nonmovinginventoris/categories_details?categories_id=<?php echo $categories_ftc['Categorie']['id']; ?>" class="zoom valign-center">
+                        <a href="<?php echo $this->webroot; ?>Nonmovinginventory/categories_details?categories_id=<?php echo $categories_ftc['Categorie']['id']; ?>" class="zoom valign-center">
                           <div class="valign-center-elem" >
                             <strong style="font-size:14px"><?php echo $categories_ftc['Categorie']['categories']; ?></strong>
                             <em></em>

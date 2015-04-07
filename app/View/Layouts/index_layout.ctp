@@ -67,7 +67,7 @@ echo $this->fetch('meta'); ?>
          <script src="<?php echo $this->webroot; ?>assets/javascripts/jquery-411a53b27134bb9f6289afadeb2ea0b3.js"></script>
     <script src="<?php echo $this->webroot; ?>assets/javascripts/bootstrap-js-9740c835b5d9e905f6e4960383ab36a0.js"></script>
    <?php    
-$this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'ajax_function'), array());
+$this->requestAction(array('controller' => 'Nonmovinginventory', 'action' => 'ajax_function'), array());
 ?>   
 </head>
 <!-- --------------------------------start  menu  header--------------------------------------------- -->
@@ -87,7 +87,7 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
          <span class="title-main navbar-brand tk-adelle"><img src="<?php echo $this->webroot; ?>images/project_logo/non-moving-logo.png" width="200" alt="NON MOVING INVENTORY"></span>
 			<!-- BEGIN HEADER SEARCH BOX -->
 			<!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
-			<form class="search-form search-form-expanded" action="<?php echo $this->webroot; ?>nonmovinginventoris/categories_details" method="GET">
+			<form class="search-form search-form-expanded" action="<?php echo $this->webroot; ?>Nonmovinginventory/categories_details" method="GET">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search..." name="search_by_meta">
 					<span class="input-group-btn">
@@ -102,19 +102,19 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
 				<ul class="header-navigation" style="padding-right:22px;">
 					<!-- BEGIN NOTIFICATION DROPDOWN -->
 					<li>
-						<a href="<?php echo $this->webroot; ?>nonmovinginventoris/index"  style="font-size:17px;">Home</a>
+						<a href="<?php echo $this->webroot; ?>Nonmovinginventory/index"  style="font-size:17px;">Home</a>
 						</li>
                     
                     	<li>
-						<a href="<?php echo $this->webroot; ?>nonmovinginventoris/about_us" style="font-size:17px;">About Us</a>
+						<a href="<?php echo $this->webroot; ?>Nonmovinginventory/about_us" style="font-size:17px;">About Us</a>
 						</li>
                         
 						<li>
-						<a href="<?php echo $this->webroot; ?>nonmovinginventoris/register" style="font-size:17px;">Register</a>
+						<a href="<?php echo $this->webroot; ?>Nonmovinginventory/register" style="font-size:17px;">Register</a>
 						</li>
                         
                          <li>
-						 <a href="<?php echo $this->webroot; ?>nonmovinginventoris/login" style="font-size:17px;">Sign In</a>
+						 <a href="<?php echo $this->webroot; ?>Nonmovinginventory/login" style="font-size:17px;">Sign In</a>
 						</li>
 					<!-- END TODO DROPDOWN -->
 					<!-- BEGIN USER LOGIN DROPDOWN -->
@@ -148,7 +148,7 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
 				<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
 				<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu page-sidebar-menu-closed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
 					<li class="start active ">
-						<a href="<?php echo $this->webroot; ?>nonmovinginventoris/index">
+						<a href="<?php echo $this->webroot; ?>Nonmovinginventory/index">
 						<i class="icon-home"></i>
 						<span class="title">Dashboard</span>
 						<span class="selected"></span>
@@ -161,7 +161,7 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
 		</div>
 		<!-- END SIDEBAR -->
 <?php    
-//$this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'menu_header'), array());
+//$this->requestAction(array('controller' => 'Nonmovinginventory', 'action' => 'menu_header'), array());
 ?>
 <!-- --------------------------------end  menu  header--------------------------------------------- -->
 <!-- BEGIN CONTENT -->
@@ -190,12 +190,12 @@ $this->requestAction(array('controller' => 'nonmovinginventoris', 'action' => 'a
           <!-- BEGIN PAYMENTS -->
           <div class="col-md-6 col-sm-6 padding-top-10" >
             <ul class="social-footer list-unstyled list-inline pull-right">
-              <li><a href="<?php echo $this->webroot; ?>nonmovinginventoris/term_services" style="font-size:17px;color:#57C8EB;"> T &amp; C</a></li>
-                <li><a href="<?php echo $this->webroot; ?>nonmovinginventoris/faqs" style="font-size:17px;color:#57C8EB;">FAQ</a></li>
-                <li><a href="<?php echo $this->webroot; ?>nonmovinginventoris/about_us" style="font-size:17px;color:#57C8EB;">About Us</a></li>
-                <li><a href="<?php echo $this->webroot; ?>nonmovinginventoris/contact_us" style="font-size:17px;color:#57C8EB;">Contact Us</a></li>
-                <li><a href="<?php echo $this->webroot; ?>nonmovinginventoris/register" style="font-size:17px;color:#57C8EB;">Register </a></li>
-                <li><a href="<?php echo $this->webroot; ?>nonmovinginventoris/login" style="font-size:17px;color:#57C8EB;">Sign In </a></li>
+              <li><a href="<?php echo $this->webroot; ?>Nonmovinginventory/term_services" style="font-size:17px;color:#57C8EB;"> T &amp; C</a></li>
+                <li><a href="<?php echo $this->webroot; ?>Nonmovinginventory/faqs" style="font-size:17px;color:#57C8EB;">FAQ</a></li>
+                <li><a href="<?php echo $this->webroot; ?>Nonmovinginventory/about_us" style="font-size:17px;color:#57C8EB;">About Us</a></li>
+                <li><a href="<?php echo $this->webroot; ?>Nonmovinginventory/contact_us" style="font-size:17px;color:#57C8EB;">Contact Us</a></li>
+                <li><a href="<?php echo $this->webroot; ?>Nonmovinginventory/register" style="font-size:17px;color:#57C8EB;">Register </a></li>
+                <li><a href="<?php echo $this->webroot; ?>Nonmovinginventory/login" style="font-size:17px;color:#57C8EB;">Sign In </a></li>
             </ul>  
           </div>
           <!-- END PAYMENTS -->
