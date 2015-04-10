@@ -1,6 +1,3 @@
-<php
-	session_start();
-?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />

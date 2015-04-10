@@ -19,8 +19,8 @@ select
                     <div class="caption">
                         <i class="icon-basket font-green-sharp"></i>
                         <span class="caption-subject font-green-sharp bold uppercase">
-                        Add Product </span>
-                        <span class="caption-helper">create product</span>
+                        Edit Product </span>
+                        <span class="caption-helper">edit product</span>
                     </div>
                     <div class="actions btn-set">
                        <!-- <button type="button" name="back" class="btn btn-default btn-circle"><i class="fa fa-angle-left"></i> Back</button>-->
@@ -210,14 +210,8 @@ select
                                         <div class="col-md-10">
                                             <select class="table-group-action-input form-control input-medium" name="status">
                                                 <option value="">Select...</option>
-                                                <?php
-												foreach($arr_status as $value)
-                                                { 
-												?>
-                                                <option value="<?php echo $value['status']['id']; ?>">&nbsp;&nbsp;&nbsp;<?php echo $value['status']['status_name']; ?></option>
-                                                <?php
-												}
-												?>
+                                                <option value="1">Published</option>
+                                                <option value="0">Not Published</option>
                                             </select>
                                         </div>
                                     </div>

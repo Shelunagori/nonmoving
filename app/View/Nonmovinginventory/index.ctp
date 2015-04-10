@@ -1,9 +1,9 @@
 <?php
+/*
 if (session_status() == PHP_SESSION_ACTIVE) 
 {
 	session_destroy();
-}
-//$themes_active_id=$this->requestAction(array('controller' => 'Nonmovinginventory', 'action' => 'themes_active_id'), array());
+}*/
 $submit_succ=1;
 ?>
 <script src="<?php echo $this->webroot; ?>theme_admin/assets/global/plugins/jquery.min.js" type="text/javascript"></script>

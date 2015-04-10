@@ -13,6 +13,10 @@ class NonmovinginventoryController extends AppController
 	
 	public function index()
 	{
+		if(!empty($this->request->data['logout']))
+		{
+			session_destroy();
+		}
 		$this->layout='index_layout';
 		$this->loadmodel('Categorie');
 		$this->set('categories_arr', $this->Categorie->find('all'));
@@ -250,14 +254,43 @@ public function ecommerce_products()
 	{
 		$this->layout='user_index_layout';
 		$user_id=$this->Session->read('user_id');
+		$conditions=array('user_id' => $user_id);
+		$this->loadmodel('classified_post');
+		$this->set('arr_classified',$this->classified_post->find('all',array('conditions'=>$conditions)));
+		
+		$this->loadmodel('status');
+		$this->set('arr_status',$this->status->find('all'));
+		
 		$this->loadmodel('categorie');
 		$this->set('arr_categories',$this->categorie->find('all'));
+		
+		$this->loadmodel('sub_categorie');
+		$this->set('arr_subcategories',$this->sub_categorie->find('all'));
+		
+	}
+	public function find_status($status_id)
+	{
+		$conditions=array('id' => $status_id);
+		$this->loadmodel('status');
+		@$result=$this->status->find('all',array('conditions'=>$conditions,'fields'=>array('status_name')));
+		return $result;
+	}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public function ecommerce_new_post() 
+	{
+		$this->layout='user_index_layout';
+		$user_id=$this->Session->read('user_id');
+		$this->loadmodel('categorie');
+		$this->set('arr_categories',$this->categorie->find('all'));
+		
+		$this->loadmodel('status');
+		$this->set('arr_status',$this->status->find('all'));
 		
 		$this->loadmodel('state');
 		$this->set('arr_states',$this->state->find('all'));
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public function ecommerce_new_post() 
+	public function ecommerce_products_edit() 
 	{
 		$this->layout='user_index_layout';
 		$user_id=$this->Session->read('user_id');
@@ -1186,7 +1219,7 @@ public function ajax_function()
 					 e.preventDefault();
 					 $('#upload_image').attr('disabled', 'disabled');
 					// $('html,body').html('<div class="modal-backdrop fade in"></div>');
-					// $('#message').html('<center><img src="<?PHP echo $this->webroot; ?>img/ajax-loaders/ajax-loader-1.gif" ></center>');
+					// $('#message').html('<center><img src="<?PHP echo $this->webroot; ?>images/ajax-loaders/ajax-loader-1.gif" ></center>');
 					 var update = $("#update_table").val();
 					 var rowCount = $('#tab_images_uploader_filelist tr').length;
 					$(".e-clicked").removeClass("e-clicked");
@@ -1284,7 +1317,7 @@ public function ajax_function()
 					var name=$(this).find(".e-clicked").attr("name");
 				//	var rowCount = $('#tab_images_uploader_filelist tr').length;
 				////	$('html,body').append('<div class="modal-backdrop fade in"></div>');
-					$('#message').html('<center><img src="<?PHP echo $this->webroot; ?>img/ajax-loaders/ajax-loader-1.gif" ></center>');
+					$('#message').html('<center><img src="<?PHP echo $this->webroot; ?>images/ajax-loaders/ajax-loader-1.gif" ></center>');
 					$(".e-clicked").removeClass("e-clicked");
 					var update = $("#update_table").val();
 					$.ajax({
@@ -1325,13 +1358,13 @@ public function ajax_function()
     {
         
          var query="?click_status=" + click_status;
-    //	  document.getElementById("getdata").innerHTML=' <div align="center" style="font-size:15px;"><img src="img/ajax-loaders/ajax-loader-7.gif" ></div>';
+    //	  document.getElementById("getdata").innerHTML=' <div align="center" style="font-size:15px;"><img src="images/ajax-loaders/ajax-loader-7.gif" ></div>';
     location.href="ad_approval_panding"+ query;
     }  
     function fetch_sub_category_ajax(category_id)
 	{
 		var query="?category_id=" + encodeURIComponent(category_id)
-		 $("#sub_category_ajax").html('<center><img src="<?PHP echo $this->webroot; ?>img/ajax-loaders/ajax-loader-1.gif" ></center>').load('fetch_sub_category_ajax'+query);
+		 $("#sub_category_ajax").html('<center><img src="<?PHP echo $this->webroot; ?>images/ajax-loaders/ajax-loader-1.gif" ></center>').load('fetch_sub_category_ajax'+query);
 	}
     function doSomething()
     { 

@@ -1,6 +1,3 @@
-<php
-	session_start();
-?>
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -50,7 +47,10 @@ echo $this->fetch('meta'); ?>
 <link rel="shortcut icon" href="<?php echo $this->webroot; ?>theme_admin/images/shortcut_icon/non-moving-logo.png"/>
 <style>
 
-
+#hoverlog:hover
+{
+	background-color:#F1F1F1;
+}
 .mycolour
 {
 	color:#C2C1C1;
@@ -179,16 +179,22 @@ $this->requestAction(array('controller' => 'Nonmovinginventory', 'action' => 'aj
 						<i class="fa fa-angle-down"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-default">
-							<!--<li>
+							<li>
 								<a href="<?php echo $this->webroot; ?>Nonmovinginventory/user_profile">
 								<i class="icon-user"></i> My Profile </a>
-							</li>-->
+							</li>
 							
 							
 							
 							<li>
-								<a href="<?php echo $this->webroot; ?>Nonmovinginventory/index">
-								<i class="icon-key"></i> Log Out </a>
+                            <!--<form  action="<?php echo $this->webroot; ?>Nonmovinginventory/index" method="post">
+                          <!--  <button type="submit" class="btn btn-default" style="font-size: 14px; font-weight: 300; display: block; clear: both; line-height: 18px; white-space: nowrap; padding: 8px 14px; border:none !important; background-color: transparent; width:100%; border-radius: 0px !important;" name="logout"><i class="icon-key"></i> Log Out</button>-->
+                       
+                          <!--  </form>-->
+								<form id="form1" action="<?php echo $this->webroot; ?>Nonmovinginventory/index" method="post">
+                               <input type="hidden" value="logout" name="logout">
+                                <a id="hoverlog" style="color: #555; padding: 8px 14px; text-decoration: none; display: block; clear: both; line-height: 18px; white-space: nowrap; " href="#" onclick="document.getElementById('form1').submit();"><i class="icon-key"></i>&nbsp;&nbsp; Logout </a>
+                            	</form>
 							</li>
 						</ul>
 					</li>

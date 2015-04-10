@@ -58,7 +58,7 @@ foreach($classified_posts_arr as $ftc_classified_post)
 }
 </style>
  <div  class="row">
-	<div class="col-md-6">
+	<div class="col-md-12">
             <div class="product-page">
               <div class="row">
                 <div class="col-md-3 col-sm-6">
